@@ -1,11 +1,28 @@
+// function consecutiveSubstrings(string) {
+//   // type your code here
+//   const res = [];
+//   for (let i = 0; i < string.length; i++) {
+//     for (let j = i; j < string.length; j++) {
+//       res.push(string.slice(i, j+1));
+//     }
+//   }
+//   return res;
+// }
+
 function consecutiveSubstrings(string) {
   // type your code here
   const res = [];
-  for (let i = 0; i < string.length; i++) {
-    for (let j = i; j < string.length; j++) {
-      res.push(string.slice(i, j+1));
-    }
-  }
+  const arr = string.split('');
+
+  arr.forEach((ch, i) => {
+    let substr = ch;
+    res.push(substr);
+    arr.slice(i+1).forEach((ch2, i) => {
+      substr += ch2;
+      res.push(substr);
+    });
+  });
+
   return res;
 }
 
@@ -24,7 +41,7 @@ if (require.main === module) {
   console.log("=>", consecutiveSubstrings(''));
 
   console.log('');
-  console.log("Expecting: [a, ab]");
+  console.log("Expecting: [a, ab, b]");
   console.log("=>", consecutiveSubstrings('ab'));
 }
 
